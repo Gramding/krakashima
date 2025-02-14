@@ -70,6 +70,8 @@ def main(page: ft.Page):
             records = []
         result.value = str(result.value)  + "\n" + "Total win  : " + str(win)
         result.value = str(result.value)  + "\n" + "Total loss : " + str(loss)
+        win = 0
+        loss = 0
         page.update()
 
     page.add(
