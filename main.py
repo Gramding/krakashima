@@ -1,7 +1,8 @@
 import flet as ft
 import numpy as np
 import random
-
+win = 0
+loss = 0
 def main(page: ft.Page):
     page.title = "Krakashima Calculator"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -28,14 +29,21 @@ def main(page: ft.Page):
     thumbCountFlip = ft.Text("")
     resultLenght = ft.Checkbox(label="Log level (true = short, false = long. Relevant for thumb results)", value=True)
     
+    def addToTriggers(e):
+        if int(krakTrigger.value) + win < 999:
+            krakTrigger.value = int(krakTrigger.value) + win
+        else:
+            #clearRes(e)
+            result.value =  "To many Krak triggers, max is 999. Game is already won right?"  + "\n" + str(result.value) 
+        page.update()
 
 
     
     def flip(e):
         clearRes(e)
-        win = 0
-        loss = 0
         records = []
+        global win
+        global loss
         thumbsCount = pow(2,int(thumbs.value))
         for i in range(0,int(krakTrigger.value)):
             if int(thumbsCount) > 1:
@@ -126,7 +134,8 @@ def main(page: ft.Page):
         ft.Row(
             [
                 ft.TextButton(text="Flip The Coins", on_click=flip),
-                ft.TextButton(text="Clear Results", on_click=clearRes)
+                ft.TextButton(text="Clear Results", on_click=clearRes),
+                ft.TextButton(text="Add result to Krak Trigger Count?", on_click=addToTriggers)
             ],
             alignment=ft.MainAxisAlignment.CENTER,
         ),
