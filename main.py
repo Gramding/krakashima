@@ -30,7 +30,8 @@ def main(page: ft.Page):
     resultLenght = ft.Checkbox(label="Log level (true = short, false = long. Relevant for thumb results)", value=True)
     
     def addToTriggers(e):
-        if int(krakTrigger.value) + win < 999:
+        global winAdd
+        if int(krakTrigger.value) + winAdd < 999:
             krakTrigger.value = int(krakTrigger.value) + winAdd
         else:
             #clearRes(e)
