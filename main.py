@@ -74,8 +74,14 @@ def main(page: ft.Page):
                     page.update()
                     loss += 1
             records = []
-        result.value = str(result.value)  + "\n" + "Total win  : " + str(win)
-        result.value = str(result.value)  + "\n" + "Total loss : " + str(loss)
+        result.value =   "\n" + "Total win  : " + str(win) + "\n\n" + str(result.value)
+        result.value =   "\n" + "Total loss : " + str(loss) + str(result.value)
+        if int(thumbsCount) >= 1:
+            thum = int(krakTrigger.value) * thumbsCount
+            calc = (1 - (2 / 2**int(thum))) * 100
+        else:
+            calc = (1 - (2 / 2**int(krakTrigger.value))) * 100
+        result.value = "Probability to get copy and bounce: " + str(calc) + "%" + "\n\n" + result.value
         winAdd = win
         lossAdd = loss
         page.update()
